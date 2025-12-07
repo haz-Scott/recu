@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Store</title>
+  <link rel="stylesheet" href="style.css"> <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* ====== ESTILOS TIPO GOOGLE PLAY ====== */
+    
+    /* Rejilla limpia de Iconos */
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 25px;
+      padding: 20px 0;
+      justify-items: center; /* Centrar items */
+    }
+
+    /* Elemento App (Icono + Nombre) */
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      width: 100px;
+      transition: transform 0.2s;
+    }
+
+    .app-item:hover {
+      transform: scale(1.05);
+    }
+
+    /* Icono Cuadrado con bordes redondeados */
+    .app-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      text-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    }
+
+    .app-name { font-size: 0.85rem; font-weight: 600; color: #333; line-height: 1.2; }
+    .app-rating { font-size: 0.7rem; color: #666; margin-top: 3px; }
+
+    /* Colores vibrantes para los iconos */
+    .bg-blue { background: linear-gradient(135deg, #4285F4, #2962ff); }
+    .bg-green { background: linear-gradient(135deg, #34A853, #00c853); }
+    .bg-red { background: linear-gradient(135deg, #EA4335, #d50000); }
+    .bg-yellow { background: linear-gradient(135deg, #FBBC05, #ffab00); }
+    .bg-purple { background: linear-gradient(135deg, #A142F4, #6200ea); }
+    .bg-teal { background: linear-gradient(135deg, #00BFA5, #00695c); }
+
+    /* ====== VENTANA EMERGENTE (MODAL) ====== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6); /* Fondo oscuro */
+      display: none; /* Oculto por defecto */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      position: relative;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Elementos dentro del Modal */
+    .modal-icon {
+      width: 100px; height: 100px; border-radius: 22px; margin: 0 auto 20px auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; color: white; font-weight: bold;
+    }
+    
+    .modal-title { font-size: 1.5rem; margin-bottom: 5px; color: #202124; }
+    .modal-dev { font-size: 0.9rem; color: #16a34a; font-weight: 600; margin-bottom: 15px; }
+    
+    .modal-desc { 
+      font-size: 0.95rem; color: #5f6368; line-height: 1.5; margin-bottom: 25px; 
+      background: #f8f9fa; padding: 15px; border-radius: 12px;
+    }
+
+    .btn-download {
+      display: block; width: 100%; padding: 14px;
+      background: #16a34a; color: white; font-weight: bold; font-size: 1rem;
+      border-radius: 12px; text-decoration: none; text-transform: uppercase;
+      box-shadow: 0 5px 15px rgba(22, 163, 74, 0.3);
+      transition: transform 0.2s;
+    }
+    .btn-download:hover { transform: scale(1.02); background: #15803d; }
+
+    .btn-close {
+      position: absolute; top: 15px; right: 15px;
+      background: #f1f3f4; border: none; width: 30px; height: 30px;
+      border-radius: 50%; cursor: pointer; font-weight: bold; color: #555;
+    }
+
+  </style>
+
+<script>
+  if ("serviceWorker" in navigator) { navigator.serviceWorker.register("service-worker.js"); }
+</script>
+</head>
+<body>
+
+<header>
+  <h1>App Store</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="fundamentos.html">Fundamentos</a>
+    <a href="sensores.html">Sensores</a>
+    <a href="notificaciones.html">Notif.</a>
+    <a href="librerias.html">Librerías</a>
+    <a href="depuracion.html">Depuración</a>
+    <a href="empaquetado.html">Empaquetado</a>
+    <a href="distribucion.html">Store</a>
+    <a href="#" onclick="cerrarSesion()" class="btn-logout">Salir ⏻</a>
+  </nav>
+</header>
+
+<section>
+    
+    <h2>Recomendados para ti</h2>
+    
+    <div class="store-grid">
+        
+        <div class="app-item" onclick="abrirApp('fundamentos')">
+            <div class="app-icon bg-blue">F</div>
+            <span class="app-name">Fundamentos</span>
+            <span class="app-rating">★ 4.9</span>
+        </div>
+
+        <div class="app-item" onclick="abrirApp('sensores')">
+            <div class="app-icon bg-green">S</div>
+            <span class="app-name">Sensores</span>
+            <span class="app-rating">★ 4.5</span>
+        </div>
+
+        <div class="app-item" onclick="abrirApp('notificaciones')">
+            <div class="app-icon bg-red">N</div>
+            <span class="app-name">Notificaciones</span>
+            <span class="app-rating">★ 4.2</span>
+        </div>
+
+        <div class="app-item" onclick="abrirApp('librerias')">
+            <div class="app-icon bg-yellow">L</div>
+            <span class="app-name">Librerías</span>
+            <span class="app-rating">★ 4.7</span>
+        </div>
+
+        <div class="app-item" onclick="abrirApp('depuracion')">
+            <div class="app-icon bg-purple">D</div>
+            <span class="app-name">Depuración</span>
+            <span class="app-rating">★ 4.8</span>
+        </div>
+
+        <div class="app-item" onclick="abrirApp('empaquetado')">
+            <div class="app-icon bg-teal">E</div>
+            <span class="app-name">Empaquetado</span>
+            <span class="app-rating">★ 4.6</span>
+        </div>
+
+    </div>
+
+</section>
+
+<div id="modalStore" class="modal-overlay" onclick="cerrarModal(event)">
+    <div class="modal-content">
+        <button class="btn-close" onclick="cerrarModalBtn()">✕</button>
+        
+        <div id="modalIcon" class="modal-icon bg-blue">F</div>
+        <h2 id="modalTitle" class="modal-title">Título App</h2>
+        <div class="modal-dev">Contenido Verificado ✅</div>
+        <p id="modalDesc" class="modal-desc">Descripción corta aquí...</p>
+        
+        <a id="modalLink" href="#" download class="btn-download">INSTALAR (PDF)</a>
+    </div>
+</div>
+
+<script>
+    // DATOS DE LAS "APPS" (PDFs)
+    const appsData = {
+        fundamentos: {
+            title: "Fundamentos Móviles",
+            desc: "Aprende lo básico: Sistemas Operativos (iOS vs Android), arquitecturas, lenguajes nativos vs híbridos y hardware.",
+            colorClass: "bg-blue",
+            letter: "F",
+            link: "pdfs/fundamentos.pdf"
+        },
+        sensores: {
+            title: "Gestión de Sensores",
+            desc: "Guía completa sobre cómo usar el giroscopio, acelerómetro y GPS en tus aplicaciones para crear experiencias inmersivas.",
+            colorClass: "bg-green",
+            letter: "S",
+            link: "pdfs/sensores.pdf"
+        },
+        notificaciones: {
+            title: "Notificaciones Push",
+            desc: "Descubre cómo funcionan los servicios en segundo plano y cómo enviar alertas a los usuarios aunque la app esté cerrada.",
+            colorClass: "bg-red",
+            letter: "N",
+            link: "pdfs/notificaciones.pdf"
+        },
+        librerias: {
+            title: "Librerías y Toolkits",
+            desc: "Comparativa de frameworks modernos: React Native, Flutter e Ionic. Ventajas, desventajas y cuándo usar cada uno.",
+            colorClass: "bg-yellow",
+            letter: "L",
+            link: "pdfs/librerias.pdf"
+        },
+        depuracion: {
+            title: "Depuración y Seguridad",
+            desc: "Técnicas avanzadas para encontrar errores (debugging) y proteger tu app con permisos y cifrado de datos.",
+            colorClass: "bg-purple",
+            letter: "D",
+            link: "pdfs/depuracion.pdf"
+        },
+        empaquetado: {
+            title: "Empaquetado (Deploy)",
+            desc: "Paso a paso para generar el archivo APK o IPA final, firmarlo digitalmente y subirlo a las tiendas oficiales.",
+            colorClass: "bg-teal",
+            letter: "E",
+            link: "pdfs/empaquetado.pdf"
+        }
+    };
+
+    // FUNCIÓN PARA ABRIR EL MODAL
+    function abrirApp(id) {
+        const data = appsData[id];
+        if(!data) return;
+
+        // Inyectar datos en el HTML
+        document.getElementById("modalTitle").innerText = data.title;
+        document.getElementById("modalDesc").innerText = data.desc;
+        document.getElementById("modalLink").href = data.link;
+        
+        // Configurar icono (Color y Letra)
+        const iconDiv = document.getElementById("modalIcon");
+        iconDiv.className = "modal-icon " + data.colorClass; // Resetea clases y pone la nueva
+        iconDiv.innerText = data.letter;
+
+        // Mostrar Modal
+        document.getElementById("modalStore").style.display = "flex";
+    }
+
+    // FUNCIONES PARA CERRAR
+    function cerrarModalBtn() {
+        document.getElementById("modalStore").style.display = "none";
+    }
+
+    // Cerrar si clicamos fuera de la tarjeta blanca
+    function cerrarModal(e) {
+        if (e.target.id === "modalStore") {
+            document.getElementById("modalStore").style.display = "none";
+        }
+    }
+</script>
+
+<script src="app.js"></script>
+
+</body>
+</html>

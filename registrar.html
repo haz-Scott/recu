@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<div class="container">
+    <h2>Registrarse</h2>
+    <form id="registerForm">
+        <input type="text" id="regUser" placeholder="Nuevo Usuario" required>
+        <input type="password" id="regPass" placeholder="Contraseña" required>
+        <button type="submit" class="small-btn">Crear Cuenta</button>
+    </form>
+    
+    <div class="extra-box">
+        <p>¿Ya tienes cuenta?</p>
+        <button class="small-btn" onclick="window.location.href='login.html'">Volver al Login</button>
+    </div>
+</div>
+
+<script src="db.js"></script>
+<script src="app.js"></script>
+
+<script>
+    const registerForm = document.getElementById("registerForm");
+    const regUser = document.getElementById("regUser");
+    const regPass = document.getElementById("regPass");
+
+    registerForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const usuario = regUser.value.trim();
+        const pass = regPass.value.trim();
+
+        const exito = await registrarUsuario(usuario, pass);
+        if (exito) {
+            alert("Usuario registrado con éxito. Ahora inicia sesión.");
+            window.location.href = "login.html";
+        } else {
+            alert("El usuario ya existe o hubo un error.");
+        }
+    };
+</script>
+  
+</body>
+</html>

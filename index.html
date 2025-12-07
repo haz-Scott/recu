@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial Desarrollo Móvil</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="login.html">
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+<script>
+if (!localStorage.getItem("usuarioActivo")) {
+    window.location.href = "login.html";
+}
+</script>
+</head>
+<body>
+
+<header>
+  <h1>Tutorial de Desarrollo de Aplicaciones Móviles</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="fundamentos.html">Fundamentos</a>
+    <a href="sensores.html">Sensores</a>
+    <a href="notificaciones.html">Notificaciones</a>
+    <a href="librerias.html">Librerías</a>
+    <a href="depuracion.html">Depuración</a>
+    <a href="empaquetado.html">Empaquetado</a>
+    <a href="distribucion.html">Descargas PDF</a>
+    <a href="#" onclick="cerrarSesion()" class="btn-logout">Salir ⏻</a>
+  </nav>
+</header>
+
+<section>
+<h2>Bienvenido</h2>
+<p>Este tutorial te enseñará a desarrollar una App móvil moderna, cubriendo desde la teoría fundamental hasta la distribución.</p>
+</section>
+
+<script>
+// Proteger la página: solo usuarios logueados
+const userLogged = localStorage.getItem("usuarioActivo");
+if (!userLogged) location.href = "login.html";
+</script>
+<script src="app.js"></script>
+</body>
+</html>

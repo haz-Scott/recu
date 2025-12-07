@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificaciones y Servicios</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+</head>
+<body>
+
+<header>
+  <h1>Servicios y Notificaciones en Apps</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="fundamentos.html">Fundamentos</a>
+    <a href="sensores.html">Sensores</a>
+    <a href="notificaciones.html">Notificaciones</a>
+    <a href="librerias.html">Librerías</a>
+    <a href="depuracion.html">Depuración</a>
+    <a href="empaquetado.html">Empaquetado</a>
+    <a href="distribucion.html">Descargas PDF</a>
+    <a href="#" onclick="cerrarSesion()" class="btn-logout">Salir ⏻</a>
+  </nav>
+</header>
+
+<section>
+
+<h2>Servicios en segundo plano</h2>
+<p>
+  Los servicios permiten que una app siga haciendo tareas aunque esté cerrada, 
+  como reproducir música, guardar datos o actualizar información.
+</p>
+
+<h3>Tareas que se ejecutan en background</h3>
+<ul>
+  <li>Sincronización de datos</li>
+  <li>Descarga de archivos</li>
+  <li>Notificaciones programadas</li>
+  <li>Monitoreo de sensores</li>
+</ul>
+
+<h2>Notificaciones</h2>
+<p>
+  Las notificaciones alertan al usuario sobre eventos importantes incluso sin abrir la app.
+</p>
+
+<h3>Ejemplo de notificación web (JavaScript)</h3>
+
+<pre>
+// Solicitar permiso
+Notification.requestPermission().then(permission => {
+  if (permission === "granted") {
+    new Notification("Hola desde tu App!");
+  }
+});
+</pre>
+
+<h3>Proveedores de contenido</h3>
+<p>Son servicios que comparten datos entre apps, como calendarios o contactos.</p>
+
+<h3>Servicios en la nube aplicables</h3>
+<ul>
+  <li>Firebase Cloud Messaging (FCM)</li>
+  <li>OneSignal</li>
+  <li>AWS SNS</li>
+</ul>
+
+<h3>Referencias</h3>
+<ul>
+  <li>MDN Web Docs: Notifications API</li>
+  <li>Firebase Cloud Messaging</li>
+</ul>
+
+</section>
+<script src="app.js"></script>
+</body>
+</html>

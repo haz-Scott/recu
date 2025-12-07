@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+<script>
+// Si ya inició sesión antes -> entra directo
+if (localStorage.getItem("usuarioActivo")) {
+    window.location.href = "index.html";
+}
+</script>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+        <input type="text" id="loginUser" placeholder="Usuario" required>
+        <input type="password" id="loginPass" placeholder="Contraseña" required>
+        <button type="submit" class="small-btn">Entrar</button>
+    </form>
+    <div class="extra-box">
+        <p>¿No tienes cuenta?</p>
+        <button class="small-btn" id="btnRegistro">Registrarse</button>
+    </div>
+</div>
+
+<script src="db.js"></script>
+<script src="app.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const btnReg = document.getElementById("btnRegistro");
+    btnReg.onclick = () => {
+        window.location.href = "registrar.html";
+    };
+});
+
+const loginForm = document.getElementById("loginForm");
+const loginUser = document.getElementById("loginUser");
+const loginPass = document.getElementById("loginPass");
+
+// EVENTO DE INICIAR SESIÓN
+loginForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const usuario = loginUser.value.trim();
+    const pass = loginPass.value.trim();
+    const correcto = await login(usuario, pass);
+
+    if (correcto) {
+        alert("Inicio de sesión exitoso");
+        localStorage.setItem("usuarioActivo", usuario);
+        window.location.href = "index.html";
+    } else {
+        alert("Usuario o contraseña incorrectos");
+    }
+};
+</script>
+
+</body>
+</html>

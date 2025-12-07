@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Sensores</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+</head>
+<body>
+
+<header>
+  <h1>Gestión de Sensores en Aplicaciones Móviles</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="fundamentos.html">Fundamentos</a>
+    <a href="sensores.html">Sensores</a>
+    <a href="notificaciones.html">Notificaciones</a>
+    <a href="librerias.html">Librerías</a>
+    <a href="depuracion.html">Depuración</a>
+    <a href="empaquetado.html">Empaquetado</a>
+    <a href="distribucion.html">Descargas PDF</a>
+    <a href="#" onclick="cerrarSesion()" class="btn-logout">Salir ⏻</a>
+  </nav>
+</header>
+
+<section>
+  <h2>¿Qué son los sensores?</h2>
+  <p>
+    Los sensores en dispositivos móviles permiten obtener información del entorno, como luz, movimiento, 
+    orientación, ubicación, temperatura, etc. Son esenciales para crear apps inteligentes y contextuales.
+  </p>
+
+  <h3> Tipos principales de sensores</h3>
+  <ul>
+    <li>Acelerómetro (movimiento)</li>
+    <li>Giroscopio (rotación)</li>
+    <li>Sensor de proximidad</li>
+    <li>GPS (ubicación)</li>
+    <li>Brújula digital (magnetómetro)</li>
+    <li>Sensor de luz ambiental</li>
+    <li>Sensor de huella digital</li>
+  </ul>
+
+  <h3>Gestión de sensores</h3>
+  <ol>
+    <li>Habilitación del sensor</li>
+    <li>Obtención de datos</li>
+    <li>Procesamiento y uso en la aplicación</li>
+  </ol>
+
+  <h3>Ejemplo: Obtener datos del acelerómetro (JavaScript + API DeviceMotion)</h3>
+
+  <pre>
+window.addEventListener("devicemotion", (event) => {
+  console.log("X:", event.acceleration.x);
+  console.log("Y:", event.acceleration.y);
+  console.log("Z:", event.acceleration.z);
+});
+  </pre>
+
+  <h3>Imágenes sugeridas</h3>
+  <ul>
+    <li>Acelerómetro del móvil</li>
+    <li>Giroscopio físico</li>
+    <li>Esquema GPS</li>
+  </ul>
+
+  <h3>Referencias</h3>
+  <ul>
+    <li>MDN Web Docs: DeviceMotion API</li>
+    <li>Android Sensors: developer.android.com/guide/topics/sensors</li>
+  </ul>
+</section>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depuración y Seguridad</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+</head>
+<body>
+
+<header>
+  <h1>Depuración y Seguridad en el Desarrollo de Apps</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="fundamentos.html">Fundamentos</a>
+    <a href="sensores.html">Sensores</a>
+    <a href="notificaciones.html">Notificaciones</a>
+    <a href="librerias.html">Librerías</a>
+    <a href="depuracion.html">Depuración</a>
+    <a href="empaquetado.html">Empaquetado</a>
+    <a href="distribucion.html">Descargas PDF</a>
+    <a href="#" onclick="cerrarSesion()" class="btn-logout">Salir ⏻</a>
+  </nav>
+</header>
+
+<section>
+
+<h2>Herramientas de depuración</h2>
+<ul>
+  <li>Chrome DevTools</li>
+  <li>Android Studio Debugger</li>
+  <li>Xcode Debugger</li>
+</ul>
+
+<h2>Uso de registros del sistema</h2>
+<p>Los registros permiten identificar errores rápidamente usando:</p>
+<pre>console.log("Mensaje de prueba");</pre>
+
+<h2>Refactorización de código</h2>
+<p>
+  Proceso de mejorar el código sin cambiar su funcionamiento, haciéndolo más limpio y mantenible.
+</p>
+
+<h2>Mecanismos de seguridad en Apps</h2>
+<ul>
+  <li>Permisos del sistema</li>
+  <li>Cifrado de datos</li>
+  <li>Archivos de configuración seguros</li>
+  <li>Autenticación con servidores externos</li>
+</ul>
+
+<h3>Ejemplo de permiso (Android)</h3>
+<pre>
+<uses-permission android:name="android.permission.CAMERA" />
+</pre>
+
+</section>
+<script src="app.js"></script>
+</body>
+</html>

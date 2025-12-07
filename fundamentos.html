@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos y Arquitectura</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+</head>
+<body>
+
+<header>
+  <h1>Fundamentos del Desarrollo Móvil</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="fundamentos.html">Fundamentos</a>
+    <a href="sensores.html">Sensores</a>
+    <a href="notificaciones.html">Notificaciones</a>
+    <a href="librerias.html">Librerías</a>
+    <a href="depuracion.html">Depuración</a>
+    <a href="empaquetado.html">Empaquetado</a>
+    <a href="distribucion.html">Descargas PDF</a>
+    <a href="#" onclick="cerrarSesion()" class="btn-logout">Salir ⏻</a>
+  </nav>
+</header>
+
+<section>
+  <h2>1. Sistemas Operativos Móviles y Arquitecturas</h2>
+  <p><b>Android (Google):</b> Basado en el kernel de Linux. Su arquitectura se divide en capas: Kernel, HAL (Capa de abstracción de hardware), Librerías nativas/Runtime, Framework de aplicaciones y Aplicaciones de sistema.</p>
+  <p><b>iOS (Apple):</b> Basado en Unix (Darwin). Su arquitectura (Cocoa Touch) tiene capas: Core OS, Core Services, Media y Cocoa Touch.</p>
+
+  <h2>2. Nativas vs Multiplataforma</h2>
+  <ul>
+    <li><b>Nativas:</b> Desarrolladas específicamente para un SO (Swift para iOS, Kotlin para Android). Mayor rendimiento y acceso total al hardware.</li>
+    <li><b>Multiplataforma:</b> Un solo código funciona en ambos (Flutter, React Native). Desarrollo más rápido pero a veces menor rendimiento.</li>
+  </ul>
+
+  <h2>3. Hardware de Dispositivos</h2>
+  <p>Los componentes clave que limitan o potencian una app son: CPU (Arquitectura ARM), GPU, Memoria RAM (limitada en móviles), Sensores (GPS, Giroscopio), Batería (consumo crítico) y Pantalla táctil.</p>
+
+  <h2>4. Lenguajes de Programación</h2>
+  <ul>
+    <li><b>Android Nativo:</b> Kotlin (oficial), Java.</li>
+    <li><b>iOS Nativo:</b> Swift (moderno), Objective-C (legado).</li>
+    <li><b>Multiplataforma:</b> Dart (Flutter), JavaScript (React Native/Ionic), C# (Xamarin).</li>
+  </ul>
+
+  <h2>5. Entornos de Desarrollo (IDE)</h2>
+  <ul>
+    <li><b>Android Studio:</b> El oficial para Android. Basado en IntelliJ IDEA.</li>
+    <li><b>Xcode:</b> El oficial para iOS (solo funciona en Mac).</li>
+    <li><b>VS Code:</b> Muy popular para tecnologías web y multiplataforma como Flutter o React Native.</li>
+  </ul>
+
+  <h2>6. Diseño de Interfaces (UI)</h2>
+  <p>Se utilizan "Controles" o "Widgets" (botones, listas, inputs). El diseño debe ser responsivo para adaptarse a diferentes tamaños de pantalla y orientaciones.</p>
+
+  <h2>7. Guías de Estilo</h2>
+  <ul>
+    <li><b>Material Design (Google):</b> Se basa en superficies, sombras y movimiento realista (papel y tinta).</li>
+    <li><b>Human Interface Guidelines (Apple):</b> Se enfoca en la claridad, la deferencia (el contenido es rey) y la profundidad.</li>
+  </ul>
+
+  <h2>8. Arquitecturas y Patrones de Diseño</h2>
+  <p>Para mantener el código ordenado se usan patrones como:</p>
+  <ul>
+    <li><b>MVC:</b> Modelo - Vista - Controlador.</li>
+    <li><b>MVVM:</b> Modelo - Vista - VistaModelo (Estándar moderno en Android/iOS).</li>
+    <li><b>Clean Architecture:</b> Separación estricta por capas para hacer la app testeable y mantenible.</li>
+  </ul>
+
+  <h2>9. Control de Versiones</h2>
+  <p>Herramientas esenciales para trabajar en equipo:</p>
+  <ul>
+    <li><b>Git:</b> El sistema de control de versiones.</li>
+    <li><b>GitHub / GitLab:</b> Plataformas para alojar el código en la nube.</li>
+  </ul>
+
+  <h2>10. Persistencia y Acceso a Datos</h2>
+  <p>Formas de guardar datos en el móvil:</p>
+  <ul>
+    <li><b>Shared Preferences / UserDefaults:</b> Para datos pequeños (configuraciones).</li>
+    <li><b>Bases de Datos Locales:</b> SQLite, Room (Android), CoreData (iOS), Realm.</li>
+    <li><b>Archivos:</b> Guardar imágenes o documentos directamente en el almacenamiento interno.</li>
+  </ul>
+
+  <div style="margin-top:20px; text-align:center;">
+    <a href="pdfs/fundamentos.pdf" download class="small-btn" style="text-decoration:none; display:inline-block;">Descargar Tema en PDF</a>
+  </div>
+
+</section>
+<script src="app.js"></script>
+</body>
+</html>

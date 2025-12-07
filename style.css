@@ -1,0 +1,102 @@
+/* ====== style.css (DISEÑO CARD UI) ====== */
+:root {
+  --primary: #4f46e5;    /* Indigo */
+  --secondary: #9333ea;  /* Violeta */
+  --accent: #06b6d4;     /* Cyan */
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-main: #1f2937;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Encabezado con degradado */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+nav a {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+nav a:hover {
+  background: white;
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Botón Salir (Rojo suave) */
+.btn-logout {
+    background: rgba(239, 68, 68, 0.25) !important;
+    border: 1px solid rgba(239, 68, 68, 0.5) !important;
+}
+.btn-logout:hover {
+    background: #ef4444 !important;
+    color: white !important;
+}
+
+/* Secciones Generales */
+section {
+  background: var(--card-bg);
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto 40px auto;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+section h2 { color: var(--primary); border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 20px; }
+section h3 { color: var(--secondary); margin-top: 25px; }
+
+/* Código y Listas */
+pre { background: #1e293b; color: #a5f3fc; padding: 15px; border-radius: 10px; overflow-x: auto; }
+ul, ol { margin-left: 20px; }
+li { margin-bottom: 5px; }
+
+/* Formularios */
+.container {
+  background: white; width: 100%; max-width: 400px; margin: 50px auto;
+  padding: 30px; border-radius: 20px; box-shadow: var(--shadow); text-align: center;
+}
+input, button, .small-btn {
+  width: 100%; padding: 12px; margin-top: 10px; border-radius: 10px; border: 1px solid #ddd;
+}
+button, .small-btn {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  color: white; border: none; cursor: pointer; font-weight: bold;
+}

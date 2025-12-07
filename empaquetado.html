@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empaquetado y Despliegue</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+</head>
+<body>
+
+<header>
+  <h1>Herramientas para Empaquetado y Despliegue</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="fundamentos.html">Fundamentos</a>
+    <a href="sensores.html">Sensores</a>
+    <a href="notificaciones.html">Notificaciones</a>
+    <a href="librerias.html">Librerías</a>
+    <a href="depuracion.html">Depuración</a>
+    <a href="empaquetado.html">Empaquetado</a>
+    <a href="distribucion.html">Descargas PDF</a>
+    <a href="#" onclick="cerrarSesion()" class="btn-logout">Salir ⏻</a>
+  </nav>
+</header>
+
+<section>
+
+<h2>Tipos de empaquetado de Apps</h2>
+<ul>
+  <li>APK — Android</li>
+  <li>AAB — Android App Bundle</li>
+  <li>IPA — iOS</li>
+  <li>PWA — Aplicación Web Progresiva</li>
+</ul>
+
+<h2>Herramientas de empaquetado</h2>
+<ul>
+  <li>Android Studio</li>
+  <li>Xcode</li>
+  <li>Ionic Capacitor</li>
+  <li>Cordova</li>
+</ul>
+
+<h2>Procedimiento general de empaquetado</h2>
+<ol>
+  <li>Compilar la app</li>
+  <li>Generar archivo instalable</li>
+  <li>Firmar digitalmente</li>
+  <li>Subir a la tienda o distribuir manualmente</li>
+</ol>
+
+<h3>Ejemplo con Capacitor</h3>
+<pre>
+npx cap build android
+npx cap open android
+</pre>
+
+</section>
+<script src="app.js"></script>
+</body>
+</html>
